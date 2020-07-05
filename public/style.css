@@ -1,7 +1,12 @@
-
+body{
+    width: 80%;
+    margin: auto;
+}
 
 h1{
-    color:red
+    font-family: kanit;
+    color:red;
+    text-align: center;
 }
 
 #content {
@@ -11,12 +16,37 @@ h1{
 }
 
 #restaurant-nav {
+    font-family: kanit;
 
+}
+
+#restaurant a:link{
+    text-decoration: none;
+}
+
+#map-wrap {
+    height: 550px;
+    width: 67%;
+    margin: auto;
+    border: 7px palevioletred solid;
+    padding: 4px;
 }
 
 #map {
-    height: 600px;
-    width: 67%;
-    margin: auto;
-    
+    height: 100%;
+    width: 100%;
 }
+
+/* mobile friendly */
+@media only screen and (max-width: 525px) {
+    body{
+        background-color: lightblue;
+    }
+    #content {
+      display: flex;
+      flex-direction: column;
+    }
+    #restaurant-nav{
+        text-align: center;
+    }
+  }

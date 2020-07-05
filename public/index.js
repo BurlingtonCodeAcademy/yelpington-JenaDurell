@@ -37,11 +37,12 @@ function loadMapData() {
 
         }).finally(() => {
             //center map in middle of markers, cool map movement feature!
-            // setTimeout(function () {
-            //     var group = L.featureGroup(markerArray)
-            //     console.log(group.getBounds())
-            //     myMap.fitBounds(group.getBounds());
-            // }, 2000);
+            //can be commented out to use fixed set view coordinates but this allows for adjustments if new restaurants are added and brings a fun movement feature upon app opening!
+            setTimeout(function () {
+                let group = L.featureGroup(markerArray)
+                console.log(group.getBounds())
+                myMap.fitBounds(group.getBounds());
+            }, 2000);
 
         });
 
