@@ -26,7 +26,7 @@ function loadMapData() {
                     .then((res) => {
                         return res.json()
                     }).then((restMap) => {
-                        let restLink = `<div class="single-restaurant"><a href = "/restaurant.html?restaurant=${restMap.id}"> ${restMap.name}</a></div>`
+                        let restLink = `<div><a href = "/restaurant.html?restaurant=${restMap.id}"> ${restMap.name}</a></div>`
                         restList.innerHTML += restLink //build the list of restaurants w/links
                         placeMarker(restMap.coords, restLink) //put links in popup pins
 

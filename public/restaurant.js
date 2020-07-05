@@ -23,15 +23,11 @@ fetch(`https://yelpingtonapi.herokuapp.com/api/restaurants/${currentRest}`)
             $("#notes").append(`<p>${note}</p>`)
 
         })
-        let restLink = `<div class="single-restaurant"><a href = "/restaurant.html?restaurant=${restInfo.id}"> ${restInfo.name}</a></div>`
+        let restLink = `<div><a href = "/restaurant.html?restaurant=${restInfo.id}"> ${restInfo.name}</a></div>`
         myMap.setView((restInfo.coords), 17)
         placeMarker(restInfo.coords, restLink)
 
     }).catch(err => console.log(err))
-
-
-
-
 
 
 L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
