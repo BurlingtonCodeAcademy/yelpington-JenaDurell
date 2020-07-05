@@ -1,12 +1,7 @@
-restList = document.getElementById('restaurant')
-let name = document.getElementById('name')
-let address = document.getElementById('address')
-let phone = document.getElementById('phone')
-let website = document.getElementById('website')
-let hours = document.getElementById('hours')
-let notes = document.getElementById('notes')
+let restList = document.getElementById('restaurant')
+let markerArray = []
 
-let myMap = L.map('map').setView([44.5, -73.21], 12)
+let myMap = L.map('map').setView([44.47945238700768, -73.2185983657837], 15)
 myMap.on('load', loadMapData());
 
 L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
@@ -25,55 +20,51 @@ function loadMapData() {
             console.log(obj)
             obj.forEach((restaurant) => {
                 //fetching json with other restaurant info 
-                //"id" "name" "address" "coords" "category" "price" "phone" "website" "hours" "notes"
+                //"id" "name" "address" "coords" "category" "price" "phone" "website" "hours" "notes"  
                 fetch(restaurant.infoUrl)
                     .then((res) => {
                         return res.json()
                     }).then((restMap) => {
                         console.log(restMap.coords)
-                        restList.innerHTML += `<li class="single-restaurant"><a href = ${restMap.website}> ${restMap.name}</a></li>` //build the list of restaurants 
-                        placeMarker(restMap.coords)
-                    })
+
+
+                        let restLink = `<div class="single-restaurant"><a href = "/restaurant.html?restaurant=${restMap.id}"> ${restMap.name}</a></div>`
+                        restList.innerHTML += restLink //build the list of restaurants w/links
+                        placeMarker(restMap.coords, restLink)
+                    }).catch(err => console.log(err))
 
             });
+
+        }).finally(() => {
+            //center map in middle of markers, cool map movement feature!
+            // setTimeout(function () {
+            //     var group = L.featureGroup(markerArray)
+            //     console.log(group.getBounds())
+            //     myMap.fitBounds(group.getBounds());
+            // }, 2000);
 
         });
 
 }
-//     .then((res) => {            //gets result 
-//         return res.json()
-//     })
-//     .then((obj) => {            //makes json obj
-//         console.log(obj)
-//         obj.results.forEach((restaurant) => {
-//             
-//         })
-
-//         let listArray = Array.from(document.getElementsByClassName('single-restaurant'))  //clicking on the list of restaurants
-//         listArray.forEach((restaurant) => {
-//             restaurant.addEventListener('click', fetchData)
-//         })
-//     })
-//     .catch(err => console.log(err))
-// }
-
-function placeMarker(latLongArray) {
-    
-           latLongArray = JSON.parse(latLongArray)
-    
-            
-
-            let spot = L.marker(latLongArray).addTo(myMap)
-            spot.bindPopup()
-
-            // marker.bindPopup('<h4>This is the center</h4>')
-
-            // marker.addEventListener('mouseover', () => {
-            //     marker.openPopup()
-            // })
-
-        }
 
 
-placeMarker('161 Church St. Burlington Vermont 05401')
+function placeMarker(latLongArray, pinLink) {
+
+    latLongArray = JSON.parse(latLongArray)
+
+
+
+    let spot = L.marker(latLongArray).addTo(myMap)
+    spot.bindPopup(pinLink)
+    markerArray.push(spot)
+
+
+    spot.addEventListener('mouseover', () => {
+        spot.openPopup()
+    })
+
+
+
+}
+
 
