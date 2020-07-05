@@ -1,10 +1,12 @@
 body{
     width: 80%;
     margin: auto;
+    background-color: rgb(236, 253, 253);
 }
 
 h1{
     font-family: kanit;
+    font-size: 43px;
     color:red;
     text-align: center;
 }
@@ -17,16 +19,22 @@ h1{
 
 #restaurant-nav {
     font-family: kanit;
+    font-size: 17px;
 
 }
 
-#restaurant a:link{
+#restaurant a:link, a:visited{
     text-decoration: none;
+    color: red;
+}
+
+#restaurant-nav a:hover{
+    text-decoration: underline;
 }
 
 #map-wrap {
     height: 550px;
-    width: 67%;
+    width: 57%;
     margin: auto;
     border: 7px palevioletred solid;
     padding: 4px;
@@ -35,6 +43,48 @@ h1{
 #map {
     height: 100%;
     width: 100%;
+}
+
+#rest-name{
+    text-align: center;
+    font-family: kanit;
+    font-size: 39px;
+}
+#rest-name a:link{
+    text-decoration: none;
+    color: red
+}
+#rest-name a:hover{
+    text-decoration: underline;
+}
+
+#phone-price{
+    text-align: center;
+    font-family: kanit;
+    font-size: 27px;
+    color: red
+}
+
+#hours{
+    text-align: center;
+    font-family: kanit;
+    font-size: 22px;
+    color: red
+}
+
+#notes{
+    text-align: center;
+    font-family: kanit;
+    font-size: 22px;
+    color: red
+}
+
+#map-wrap2 {
+    height: 550px;
+    width: 80%;
+    margin: auto;
+    border: 7px palevioletred solid;
+    padding: 4px;
 }
 
 /* mobile friendly */
@@ -47,6 +97,6 @@ h1{
       flex-direction: column;
     }
     #restaurant-nav{
-        text-align: center;
+        text-align:left;
     }
   }

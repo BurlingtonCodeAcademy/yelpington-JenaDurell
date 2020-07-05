@@ -2,6 +2,14 @@
 
 In this project, you will pair up and work with other teams to create an online directory of restaurants in Burlington.
 
+# Developer Notes - by Jena Durell
+
+* used Leaflet to print map to pages and various Leaflet specific functions to set mapview, drop pins, and center pins on page
+* imported and utilized jquery to print restaurant specifics to individual restaurant pages
+* inserted a media query to make app mobile friendly, as many users could be using this app while away from their desktop computers
+* used Express as a server
+* used fetch requests to retrieve remotely hosted objects 
+
 # Screenshot
 
 ![bob's yelpington screenshot](yelpington-screenshot.png)

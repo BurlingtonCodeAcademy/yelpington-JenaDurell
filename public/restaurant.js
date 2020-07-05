@@ -10,12 +10,13 @@ fetch(`https://yelpingtonapi.herokuapp.com/api/restaurants/${currentRest}`)
     .then((res) => {
         return res.json()
     }).then((restInfo) => {
-       
+        //use jquery to populate individual restaurant pages with fetched obj
         $("#rest-name a").text(restInfo.name)
-        $("#rest-name a").attr("href", restInfo.website) // Set herf value
+        $("#rest-name a").attr("href", restInfo.website) // Set herf value 
         $("#phone-price").text(`${restInfo.phone} | ${restInfo.price}`)
         $("#hours").text(restInfo.hours)
-        if(restInfo.id==="the-friendly-toast") {
+        
+        if(restInfo.id==="the-friendly-toast") {  //based on personal experience
             restInfo.notes.push("Food is good for internal cleansing, interior is trying too hard to be cool")
         }
         restInfo.notes.forEach((note) => {
@@ -23,8 +24,9 @@ fetch(`https://yelpingtonapi.herokuapp.com/api/restaurants/${currentRest}`)
 
         })
         let restLink = `<div class="single-restaurant"><a href = "/restaurant.html?restaurant=${restInfo.id}"> ${restInfo.name}</a></div>`
-        myMap.setView(JSON.parse(restInfo.coords), 17)
+        myMap.setView((restInfo.coords), 17)
         placeMarker(restInfo.coords, restLink)
+
     }).catch(err => console.log(err))
 
 
@@ -38,8 +40,6 @@ L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 }).addTo(myMap)
 
 function placeMarker(latLongArray, pinLink) {
-
-    latLongArray = JSON.parse(latLongArray)
 
     let spot = L.marker(latLongArray).addTo(myMap)
     spot.bindPopup(pinLink)
